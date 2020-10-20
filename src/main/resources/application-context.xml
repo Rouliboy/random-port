@@ -10,7 +10,15 @@
 
   <bean id="randomPortGenerator" class="com.jvi.random.RandomPortGenerator"></bean>
   <bean id="serviceEngine" class="com.jvi.random.ServiceEngine">
-    <property name="name" value="#{randomPortGenerator.generatePortInRange('${ctrlSaEngine_port.range}')}"/>
+    <property name="servicePort" value="#{randomPortGenerator.generatePortInRange('${ctrlSaEngine_port.range}')}"/>
+  </bean>
+
+  <bean id="serviceEngine2" class="com.jvi.random.ServiceEngine">
+    <property name="servicePort" value="#{randomPortGenerator.generatePortInRange(${ctrlSaEngine_port.min},${ctrlSaEngine_port.max})}"/>
+  </bean>
+
+  <bean id="serviceEngine3" class="com.jvi.random.ServiceEngine">
+    <property name="servicePort" value="#{T(java.lang.Math).random() * (${MAXPORT} - ${MINPORT} + 1) + ${MINPORT}}"/>
 
   </bean>
 
